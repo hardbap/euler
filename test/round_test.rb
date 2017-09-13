@@ -3,7 +3,7 @@ require_relative '../lib/round'
 
 class RoundTest < Minitest::Test
 
-  def test_hand_1
+  def test_hand_1_from_problem
     p1 = %w(5H 5C 6S 7S KD) # pair of 5s
     p2 = %w(2C 3S 8S 8D TD) # pair of 8s
 
@@ -12,7 +12,7 @@ class RoundTest < Minitest::Test
     refute round.player_1_wins?
   end
 
-  def test_hand_2
+  def test_hand_2_from_problem
     p1 = %w(5D 8C 9S JS AC) # A high
     p2 = %w(2C 5C 7D 8S QH) # Q high
 
@@ -21,18 +21,16 @@ class RoundTest < Minitest::Test
     assert round.player_1_wins?
   end
 
-  def test_hand_3
+  def test_hand_3_from_problem
     p1 = %w(2D 9C AS AH AC) # three A
     p2 = %w(3D 6D 7D TD QD) # diamond flush
 
     round = Round.new(p1, p2)
 
-
-
     refute round.player_1_wins?
   end
 
-  def test_hand_4
+  def test_hand_4_from_problem
     p1 = %w(4D 6S 9H QH QC) # pair of Qs, 9 high
     p2 = %w(3D 6D 7H QD QS) # pair of Qs, 7 high
 
@@ -41,9 +39,18 @@ class RoundTest < Minitest::Test
     assert round.player_1_wins?
   end
 
-  def test_hand_5
+  def test_hand_5_from_problem
     p1 = %w(2H 2D 4C 4D 4S) # full house, 4s
     p2 = %w(3C 3D 3S 9S 9D) # full house, 3s
+
+    round = Round.new(p1, p2)
+
+    assert round.player_1_wins?
+  end
+
+  def test_multiple_tiebreaker
+    p1 = %w(4D 8S 9H QH QC) # pair of Qs, 8 high
+    p2 = %w(3D 6D 9C QD QS) # pair of Qs, 6 high
 
     round = Round.new(p1, p2)
 
