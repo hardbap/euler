@@ -9,7 +9,7 @@ class Round
   end
 
   def player_1_wins?
-    case @player_1.rank <=> @player_2.rank
+    case player_1.rank <=> player_2.rank
     when 1
       true
     when 0
