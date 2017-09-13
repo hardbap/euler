@@ -14,19 +14,19 @@ class Hand
   end
 
   def royal_flush?
-    @royal_flush ||= royal_straight? && flush?
+    royal_straight? && flush?
   end
 
   def straight_flush?
-    @straight_flush ||= straight? && flush?
+    straight? && flush?
   end
 
   def four_of_a_kind?
-    @four_of_a_kind ||= !x_of_something(4).empty?
+    !x_of_something(4).empty?
   end
 
   def full_house?
-    @full_house ||= three_of_a_kind? && one_pair?
+    three_of_a_kind? && one_pair?
   end
 
   def flush?
@@ -42,7 +42,7 @@ class Hand
   end
 
   def two_pairs?
-    @two_pairs ||= x_of_something(2).length == 2
+    x_of_something(2).length == 2
   end
 
   def one_pair?
