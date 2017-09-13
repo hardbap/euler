@@ -51,8 +51,20 @@ class HandTest < Minitest::Test
     refute Hand.new(%w(QH 3H 5D 2S AC)).one_pair?, 'hand does not have one pair'
   end
 
+  def it_will_know_when_it_has_full_house
+    assert Hand.new(%w(2H 2D 4D 4S 2C)).full_house?, 'hand has a full house'
+
+    refute Hand.new(%w(2H 2D 4D 5S 2C)).one_pair?, 'hand does not have a full house'
+  end
+
+  def test_it_will_know_when_it_has_two_pairs
+    assert Hand.new(%w(2H 2D 4D 4S 5C)).two_pairs?, 'hand has two pairs'
+
+    refute Hand.new(%w(2H 2D 4D 5S 2C)).two_pairs?, 'hand does not have two pairs'
+  end
+
   def test_it_will_know_its_rank
     assert_equal 9, Hand.new(%w(TH JH QH KH AH)).rank
-    assert_equal 8, Hand.new(%w(2H 3H 4H 5H 6H)).rank 
+    assert_equal 8, Hand.new(%w(2H 3H 4H 5H 6H)).rank
   end
 end

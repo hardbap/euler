@@ -22,7 +22,11 @@ class Hand
   end
 
   def four_of_a_kind?
-    @four_of_a_kind ||= x_of_something(4)
+    @four_of_a_kind ||= !x_of_something(4).empty?
+  end
+
+  def full_house?
+    @full_house ||= three_of_a_kind? && one_pair?
   end
 
   def flush?
@@ -34,11 +38,15 @@ class Hand
   end
 
   def three_of_a_kind?
-    @three_of_a_kind ||= x_of_something(3)
+    @three_of_a_kind ||= !x_of_something(3).empty?
+  end
+
+  def two_pairs?
+    @two_pairs ||= x_of_something(2).length == 2
   end
 
   def one_pair?
-    @one_pair ||= x_of_something(2)
+    @one_pair ||= !x_of_something(2).empty?
   end
 
   def rank
