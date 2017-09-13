@@ -64,7 +64,15 @@ class HandTest < Minitest::Test
   end
 
   def test_it_will_know_its_rank
-    assert_equal 9, Hand.new(%w(TH JH QH KH AH)).rank
-    assert_equal 8, Hand.new(%w(2H 3H 4H 5H 6H)).rank
+    assert_equal 9, Hand.new(%w(TH JH QH KH AH)).rank, 'wrong rank for Royal Flush'
+    assert_equal 8, Hand.new(%w(2H 3H 4H 5H 6H)).rank, 'wrong rank for Straight Flush'
+    assert_equal 7, Hand.new(%w(2H 3H 2D 2S 2C)).rank, 'wrong rank for 4 of a kind'
+    assert_equal 6, Hand.new(%w(2H 2D 4D 4S 2C)).rank, 'wrong rank for Full House'
+    assert_equal 5, Hand.new(%w(2H 4H 6H 8H TH)).rank, 'wrong rank for Flush'
+    assert_equal 4, Hand.new(%w(2H 3H 4D 5H 6C)).rank, 'wrong rank for Straight'
+    assert_equal 3, Hand.new(%w(2H 3H 2D 4S 2C)).rank, 'wrong rank for 3 of a kind'
+    assert_equal 2, Hand.new(%w(2H 2D 4D 4S 5C)).rank, 'wrong rank for 2 pairs'
+    assert_equal 1, Hand.new(%w(2H 3H JD 4S 2C)).rank, 'wrong rank for 1 pair'
+    assert_equal 0, Hand.new(%w(5D 8C 9S JS AC)).rank, 'wrong rank for High Card'
   end
 end
