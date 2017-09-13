@@ -8,7 +8,7 @@ Based on my calculations Player 1 wins _379_ games.
 
 ## Run it
 
-`ruby euler`
+`ruby euler.rb`
 
 ## Run the test suite
 
