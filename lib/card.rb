@@ -10,6 +10,23 @@ class Card
   end
 
   def value
-    face_value.chars.first
+    case face_value.chars.first
+    when 'T'
+      10
+    when 'J'
+      11
+    when 'Q'
+      12
+    when 'K'
+      13
+    when 'A'
+      14
+    else
+      Integer(face_value.chars.first)
+    end
+  end
+
+  def <=>(other)
+    value <=> other.value
   end
 end

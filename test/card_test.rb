@@ -15,9 +15,27 @@ class CardTest < Minitest::Test
     assert_equal 'H', card.suit
   end
 
-  def test_it_will_know_its_value
-    card = Card.new('QH')
+  def test_it_will_know_its_value_for_face_cards
 
-    assert_equal 'Q', card.value
+    cards = {
+      'TH' => 10,
+      'JH' => 11,
+      'QH' => 12,
+      'KH' => 13,
+      'AH' => 14,
+    }
+
+    cards.each do |card, expected|
+      assert_equal expected, Card.new(card).value, "#{card} expected to have value #{expected}"
+    end
+
+  end
+
+  def test_it_will_know_its_value_for_nonface_cards
+
+    (1..9).each do |expected|
+      assert_equal expected, Card.new("#{expected}H").value, "#{expected}H expected to have value #{expected}"
+    end
+    
   end
 end
