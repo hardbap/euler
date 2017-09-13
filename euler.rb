@@ -15,8 +15,8 @@ CSV.foreach('./resources/poker.txt', col_sep: " ") do |row|
 
   if round.player_1_wins?
     player_1_wins += 1
-    puts 'P1 wins'
+    puts 'Player 1 wins!'
   end
 end
 
-puts "\n Total wins for Player 1: #{player_1_wins}"
+puts "\nTotal wins for Player 1: #{player_1_wins}"
